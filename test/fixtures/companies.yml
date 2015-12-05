@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  name: MyString
+  owner: MyString
+  number: 1
+  registered: 2015-12-05 15:20:57
+  good_count: 1
+  bad_count: 1
+  website: MyText
+
+two:
+  id: MyString
+  name: MyString
+  owner: MyString
+  number: 1
+  registered: 2015-12-05 15:20:57
+  good_count: 1
+  bad_count: 1
+  website: MyText
