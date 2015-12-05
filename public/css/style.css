@@ -24,6 +24,13 @@
   background-position: center;
 }
 
+#form-banner{
+  background-image: url('../image/form_header.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 200px;
+}
+
 #logo-container img{
 	max-width: 100%;
 }
