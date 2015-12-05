@@ -13,9 +13,14 @@
 	font-size: inherit;
 }
 
-#index-banner,#show-banner{
-	background-image: url('../image/show_header.jpg');
+#index-banner{
+	background-image: url('../image/main.jpg');
 	background-size: cover;
+}
+
+#show-banner{
+  background-image: url('../image/show_header.jpg');
+  background-size: cover;
   background-position: center;
 }
 
