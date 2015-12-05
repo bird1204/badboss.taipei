@@ -34,7 +34,7 @@
     <div class="main_search">
       <div class="container">
         <form>
-          <input id="keyword" type="text" value="公司名稱、老闆名字...etc...">
+          <input id="keyword" class="typeahead" type="text" placeholder="公司名稱、老闆名字...etc...">
           <div class="center"><button class="waves-effect waves-light btn deep-orange">Go!</button></div>
           <br>
         </form>
@@ -123,10 +123,29 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/typehead.js"></script>
   <script type="text/javascript">
-    $( 'input#keyword' ).click(function() {
-        $('input#keyword').val('');
+
+
+
+    var countries = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      // url points to a json file that contains an array of country names, see
+      // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
+      prefetch: 'http://twitter.github.io/typeahead.js/data/countries.json'
     });
+
+    // passing in `null` for the `options` arguments will result in the default
+    // options being used
+    $('input.typeahead').typeahead(null, {
+      name: 'countries',
+      source: countries,
+      hint: true,
+      highlight: true,
+      minLength: 1
+    });
+    
   </script>
 
   </body>
