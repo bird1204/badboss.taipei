@@ -26,7 +26,10 @@
   <div class="section no-pad-bot company_header_info" id="show-banner">
     <div class="container">
       <div class="row">
-        <div class="col push-s6 s6">
+        <div class="col m12 l4">
+          <div class="company_map circle center"></div>
+        </div>
+        <div class="col m12 l8">
             <h3 class="header light blue-grey-text">公司名稱</h3>
             <p class="grey-text company_address">台北市中山區林森北路85巷16號</p>
             <p class="grey-text company_info">公司介紹</p>
@@ -124,7 +127,7 @@
   <script type="text/javascript">
     $( document ).ready(function() {
         var company_address = $('p.company_address').html();
-        $("#show-banner").css("background-image","url('http://maps.googleapis.com/maps/api/staticmap?center="+company_address+";zoom=3&size=800x400&sensor=false;scale=4&amp;visual_refresh=true')");
+        $(".company_map").css("background-image","url('http://maps.googleapis.com/maps/api/staticmap?center="+company_address+";zoom=5&size=300x300&sensor=false;scale=4&amp;visual_refresh=true')");
     });
   </script>
 

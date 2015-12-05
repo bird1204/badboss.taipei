@@ -13,9 +13,10 @@
 	font-size: inherit;
 }
 
-#index-banner{
-	background-image: url('../image/main.jpg');
+#index-banner,#show-banner{
+	background-image: url('../image/show_header.jpg');
 	background-size: cover;
+  background-position: center;
 }
 
 #logo-container img{
@@ -180,6 +181,12 @@ input#keyword:focus{
 .company-right .card .card-content button{
 	margin:0 10px 10px 0;
 	line-height: 100%;
+}
+
+.company_map{
+  height: 300px;
+  width: 300px;
+  margin: 10px 10px 10px 0;
 }
 
 @media screen and (max-width: 600px) {
