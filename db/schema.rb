@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205074635) do
+ActiveRecord::Schema.define(version: 20151205091539) do
 
   create_table "aliases", force: :cascade do |t|
     t.string   "company_id"
@@ -39,13 +39,6 @@ ActiveRecord::Schema.define(version: 20151205074635) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "guilt_resouces", force: :cascade do |t|
-    t.string   "guilt_id"
-    t.string   "resources_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "guilts", force: :cascade do |t|
     t.string   "name"
     t.string   "company_id"
@@ -58,6 +51,14 @@ ActiveRecord::Schema.define(version: 20151205074635) do
     t.string   "acord_content"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.boolean  "good_or_bad"
+    t.string   "company_id"
+    t.string   "voting_ip"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
