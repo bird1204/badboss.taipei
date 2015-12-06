@@ -43,6 +43,18 @@ namespace :seeds do
     p "goverment_sexsual=========完成"
   end
 
+  task web_usalary: :environment do
+    IllegalBoss::Web::Usalary.new.records.each do |data|
+      c = Company.new(name: data[:name], owner: data[:name])
+      c.guilts.build(name: data[:guilts])
+      c.alias.build(keyword: data[:name])
+      c.scores.build(good_or_bad: false)
+      c.save!
+      p "#{data[:name]}=========儲存完成"
+    end
+    p "goverment_sexsual=========完成"
+  end
+
   desc "rebuild table"
   task rebuild_table: [:clear_data, "db:migrate", "db:seed"]
 end

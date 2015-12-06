@@ -27,7 +27,11 @@
           <p><br><br>
             <!-- <img src="http://materializecss.com/images/yuna.jpg"> -->
           </p>
+          <%if @company.website.present?%>
+          <%=link_to 'ptt', @company.website, class: "secondary-content"%>
+          <%else%>
           <%=link_to '勞委會違法資料', 'http://data.taipei', class: "secondary-content"%>
+          <%end%>
         </li>
         <%end%>
         <li class="collection-item avatar">
