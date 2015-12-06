@@ -1,74 +1,61 @@
-  <div class="section no-pad-bot company_header_info" id="show-banner">
-    <div class="container">
-      <div class="row">
-        <div class="col m12 l4">
-          <div class="company_map circle center"></div>
+<div class="section no-pad-bot company_header_info" id="show-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col m12 l4">
+        <div class="company_map circle center"></div>
+      </div>
+      <div class="col m12 l8">
+        <h3 class="header light blue-grey-text"><%=@company.name%></h3>
+        <p class="grey-text company_address"><%=@company.website%></p>
+        <p class="grey-text company_info"><%=@company.owner%></p>
+        <%@company.guilts.each do |g|%>
+        <div class="chip"><%=g.name%></div>
+        <%end%>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m8">
+      <ul class="collection">
+        <li class="collection-item avatar">
+          <i class="material-icons circle green">thumb_up</i>
+          <span class="title">這公司好啊</span>
+          <p>祝我清明節快樂<br>
+            (證據)<br>
+            <img src="http://materializecss.com/images/yuna.jpg">
+          </p>
+          <a href="#!" class="secondary-content">來源：ptt</a>
+        </li>
+        <li class="collection-item avatar">
+          <i class="material-icons circle red">thumb_down</i>
+          <span class="title">王八啊</span>
+          <p>光棍節還祝我快樂，幹！<br>
+            (證據)<br>
+            <img src="http://materializecss.com/images/yuna.jpg">
+          </p>
+          <a href="#!" class="secondary-content">來源：個人提供(bird1204)</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col s12 m4 company-right">
+      <div class="card">
+        <div class="card-content">
+          <button class="btn circle green lighten-2"><i class="material-icons">thumb_up</i> 讚</button><button class="btn circle red lighten-2"><i class="material-icons">thumb_down</i> 幹</button>
+          <br>
+          <p class="grey-text">分數</p>
+          <div class="card-title">5.5</div>
+          <p></p>
+          <p class="grey-text">董事長：小屁孩</p>
+          <p class="grey-text">統編：12345678</p>
+          <p class="grey-text">公司註冊日期：3000/13/32</p>
         </div>
-        <div class="col m12 l8">
-            <h3 class="header light blue-grey-text"><%=@company.name%></h3>
-            <p class="grey-text company_address"><%=@company.website%></p>
-            <p class="grey-text company_info"><%=@company.owner%></p>
-            <%@company.guilts.each do |g|%>
-              <div class="chip"><%=g.name%></div>
-            <%end%>
-            <p></p>
+        <div class="card-action">
+          <a href="http://google.com">公司網站</a>
         </div>
       </div>
     </div>
-
-
   </div>
-
-
-  <div class="container">
-
-      <div class="row">
-
-        <div class="col s12 m8">
-       <ul class="collection">
-          <%@company.scores.each do |s|%>
-          <li class="collection-item avatar">
-            <i class="material-icons circle red"><%=(s.good_or_bad) ? '讚', '幹'%></i>
-            <span class="title">這公司好啊</span>
-            <p>祝我清明節快樂<br>
-               (證據)<br>
-               <img src="http://materializecss.com/images/yuna.jpg">
-            </p>
-            來源：
-            <%=link_to '勞委會違法名單', 'http://data.taipei'%>
-          </li>
-          <%end%>
-
-          <li class="collection-item avatar">
-            <i class="material-icons circle green">讚</i>
-            <span class="title">王八啊</span>
-            <p>光棍節還祝我快樂，幹！<br>
-               (證據)<br>
-               <img src="http://materializecss.com/images/yuna.jpg">
-            </p>
-            <a href="#!" class="secondary-content">來源：個人提供(bird1204)</a>
-          </li>
-        </ul>
-        </div>
-
-        <div class="col s12 m4 company-right">
-          <div class="card">
-            <div class="card-content">
-              <button class="btn circle green lighten-2"><i class="material-icons">thumb_up</i> 讚</button><button class="btn circle red lighten-2"><i class="material-icons">thumb_down</i> 幹</button>
-              <br>
-              <p class="grey-text">分數</p>
-              <div class="card-title">5.5</div>
-              <p></p>
-              <p class="grey-text">董事長：小屁孩</p>
-              <p class="grey-text">統編：12345678</p>
-              <p class="grey-text">公司註冊日期：3000/13/32</p>
-            </div>
-            <div class="card-action">
-              <a href="http://google.com">公司網站</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-  </div>
+</div>

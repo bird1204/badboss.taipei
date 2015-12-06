@@ -23,7 +23,8 @@ class CompanyController < ApplicationController
   end
 
   def show
-    @company = Company.first
+    @company = Company.find(params[:id])
+    # fail 'fewfew'
   end
 
   private
