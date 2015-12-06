@@ -11,6 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20151205091539) do
+
+  create_table "aliases", force: :cascade do |t|
+    t.string   "company_id"
+    t.text     "keyword"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "owner"
+    t.integer  "number"
+    t.datetime "registered"
+    t.integer  "good_count"
+    t.integer  "bad_count"
+    t.text     "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "evidences", force: :cascade do |t|
+    t.string   "resource_id"
+    t.string   "image"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "guilts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string   "acord_type"
+    t.string   "acord_content"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.boolean  "good_or_bad"
+    t.string   "company_id"
+    t.string   "voting_ip"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
 end
