@@ -5,10 +5,12 @@
           <div class="company_map circle center"></div>
         </div>
         <div class="col m12 l8">
-            <h3 class="header light blue-grey-text">公司名稱</h3>
-            <p class="grey-text company_address">台北市中山區林森北路85巷16號</p>
-            <p class="grey-text company_info">公司介紹</p>
-            <div class="chip">22k</div> <div class="chip">勞基法</div> 
+            <h3 class="header light blue-grey-text"><%=@company.name%></h3>
+            <p class="grey-text company_address"><%=@company.website%></p>
+            <p class="grey-text company_info"><%=@company.owner%></p>
+            <%@company.guilts.each do |g|%>
+              <div class="chip"><%=g.name%></div>
+            <%end%>
             <p></p>
         </div>
       </div>
@@ -23,18 +25,21 @@
       <div class="row">
 
         <div class="col s12 m8">
-         <ul class="collection">
+       <ul class="collection">
+          <%@company.scores.all.each do |s|%>
+          
           <li class="collection-item avatar">
-            <i class="material-icons circle green">thumb_up</i>
-            <span class="title">這公司好啊</span>
-            <p>祝我清明節快樂<br>
-               (證據)<br>
+            <i class="material-icons circle red"><%=(s.good_or_bad == 1) ? 'thumb_up' : 'thumb_down'%></i>
+            <span class="title">沒有資料庫沒有評論</span>
+            <p>沒有資料庫沒有評論<br><br>
                <img src="http://materializecss.com/images/yuna.jpg">
             </p>
-            <a href="#!" class="secondary-content">來源：ptt</a>
+            <%=link_to '勞委會違法名單', 'http://data.taipei', class: "secondary-content"%>
           </li>
+          <%end%>
+
           <li class="collection-item avatar">
-            <i class="material-icons circle red">thumb_down</i>
+            <i class="material-icons circle green">thumb_up</i>
             <span class="title">王八啊</span>
             <p>光棍節還祝我快樂，幹！<br>
                (證據)<br>
