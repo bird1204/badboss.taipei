@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+puts "建立20筆company"
+
+create_company = for i in 1..20 do
+              Company.create!([name: "company.#{i}", owner: "boss#{i}", no: "#{i}", reg_date:"2015/12/#{i}",
+                good_counter:"#{i}", bad_counter: "#{i}", website: "http://test#{i}.taipei")
+            end
+          end
