@@ -16,15 +16,14 @@ class CompanyController < ApplicationController
   def create
     company = Company.new(company_params)
     company.guilts.build(name: params[:company][:guilt][:name])
-    company.scorces.build(good_or_bad: false)
+    company.scores.build(good_or_bad: false)
     if company.save!
       redirect_to company_index_path, notice: 'GOOD'
     end
   end
 
   def show
-    @company = Company.find(params[:id])
-    fail 'fewfew'
+    @company = Company.first
   end
 
   private
