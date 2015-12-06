@@ -4,13 +4,14 @@
   <title>BadbossTaipei</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <nav class="white lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="index.html" class="brand-logo">
+      <a id="logo-container" href="../" class="brand-logo">
       <%=image_tag 'logo_header.png'%>
       </a>
       <ul class="right black-text hide-on-med-and-down">
@@ -39,8 +40,8 @@
         <div class="col l3 s12 push-l3">
           <h5 class="white-text">提供資訊</h5>
           <ul>
-            <li><a class="white-text" href="#!">檢舉慣老闆</a></li>
-            <li><a class="white-text" href="#!">我不是慣老闆！</a></li>
+            <li><a class="white-text" href="/company/new">檢舉慣老闆</a></li>
+            <li><a class="white-text" href="/company/new">我不是慣老闆！</a></li>
           </ul>
         </div>
       </div>
