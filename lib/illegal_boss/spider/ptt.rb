@@ -1,4 +1,5 @@
 require 'net/telnet'
+# encoding: US-ASCII
 module IllegalBoss
     module Spider
       # require 'illegal_boss'
@@ -20,37 +21,7 @@ module IllegalBoss
       EmailBox = '[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4}'
 
       def initialize(attributes = {})
-        p "connect"
-        p "ptt_login"
-        tn = ptt_connect(23) 
-        # ptt_login(tn, ' mafiapatch', '000000')
-        ptt_login(tn, ' birdchiu', '74108520')
-        p "DONE"
-        # 進入O2
-        ptt_board(tn, 'AllTogether')  
-        p "ptt_board"
-        # 搜尋標題:
-        result = search_by_promote(tn, '-10')  
-        gsub_ansi_by_space(result)  
-        authors = get_article_author_list(result) 
-        # 只取最新 10 筆
-        authors.reverse!
-        if authors.size > 10
-          authors.slice!(10, authors.size - 10)
-        end
-        p "goto_by_article_num"
-                  goto_by_article_num(tn, 159)
-
-                tn.waitfor(/\xBA\xF4\xA7\x7D:(?>\s*)\Z/n){ |s| print(s) }
-
-        # 將最新10筆徵友文寄回信箱
-        authors.each do |a|   
-          goto_by_article_num(tn, a[0])
-          # if !email_article(tn, ARGV[2])
-          #   puts('\nsend article #{a[0]} fail!')
-          # end
-        end
-        # @records = json_to_array
+        @records = spider_ptt
       rescue Exception => err
         puts(err.to_s())
         err.backtrace.each{ |s| puts(s) }
@@ -58,16 +29,47 @@ module IllegalBoss
 
       private
 
-      def fff
+      def spider_ptt
         tn = ptt_connect(23)
         tn.waitfor(/guest.+new(?>[^:]+):(?>\s*)#{AnsiSetDisplayAttr}#{WaitForInput}\Z/){ |s| print(s) } 
         tn.cmd('String' => ' mafiapatch', 'Match' => /\xB1\x4B\xBD\x58:(?>\s*)\Z/n){ |s| print(s) }
         tn.cmd('String' => '000000', 
              'Match' => /#{PressAnyKeyToContinue}\Z/n){ |s| print(s) }
-        tn.print('\n')
-        tn.print('s')
+        tn.print('e')
         tn.print('q')
 
+        tn.waitfor(/\[\xA9\x49\xA5\x73\xBE\xB9\]#{AnsiSetDisplayAttr}.+#{AnsiCursorHome}\Z/n){ |s| print(s) }    
+        tn.print('s')
+        tn.waitfor(/\):(?>\s*)#{AnsiSetDisplayAttr}(?>\s*)#{AnsiSetDisplayAttr}#{AnsiCursorHome}\Z/){ |s| print(s) }    
+        lines = tn.cmd( 'String' => 'job', 'Match' => /(?>#{PressAnyKeyToContinue}|#{ArticleList})\Z/n ) do |s|       
+          print(s)
+        end 
+        tn.print('e')
+
+
+        tn.print('Z')
+        tn.waitfor(/\xAA\xBA\xA4\xE5\xB3\xB9:\s*#{AnsiCursorHome}#{AnsiSetDisplayAttr}\s+#{AnsiSetDisplayAttr}#{AnsiEraseEOL}#{AnsiCursorHome}\Z/n){ |s| print(s) }
+        result = tn.cmd( 'String' => '-5', 'Match' => /#{ArticleList}/n){ |s| print(s) }
+        gsub_ansi_by_space(result)  
+
+        authors = get_article_author_list(result) 
+        records = []
+        authors.each do |a|
+          p "==================#{a}===================="
+          # goto_by_article_num(tn, a[0])
+          tn.cmd('String' => a[0], 'Match' => /#{AnsiEraseEOL}#{AnsiCursorHome}\Z/n){ |s| print(s) }
+          tn.print('r')
+          tn.waitfor(/#{AnsiSetDisplayAttr}.+#{AnsiCursorHome}\Z/n){ |s| print(s) } 
+          tn.print('Q') 
+
+          c = tn.waitfor(/#{AnsiSetDisplayAttr}.+#{AnsiCursorHome}\Z/n){ |s| print(s) } 
+          # c.match(/job.\s.*[\xB6\xC2\xA6\x57].*$/n).to_s
+          p "==================SET RECORD===================="
+          records << { name: c.match(/job.\s?\s(.*)\](.*)$/n)[2], url: c.match(/https:.*.html/n).to_s}
+          tn.print('e')
+        end
+
+        return records
       end
 
       def ptt_connect(port, time_out=3, wait_time=1)
@@ -104,7 +106,6 @@ module IllegalBoss
           tn.cmd('String' => id, 'Match' => /\xB1\x4B\xBD\x58:(?>\s*)\Z/n){ |s| print(s) }
           tn.cmd('String' => password, 
                'Match' => /#{PressAnyKeyToContinue}\Z/n){ |s| print(s) }
-          tn.print('\n')
           tn.print('s')
           tn.print('q')
         rescue SystemCallError => e
@@ -163,6 +164,7 @@ module IllegalBoss
           tn.waitfor(/\xAA\xBA\xA4\xE5\xB3\xB9:\s*#{AnsiCursorHome}#{AnsiSetDisplayAttr}\s+#{AnsiSetDisplayAttr}#{AnsiEraseEOL}#{AnsiCursorHome}\Z/n){ |s| print(s) }
           result = tn.cmd( 'String' => '-5', 'Match' => /#{ArticleList}/n){ |s| print(s) }
 
+
           return result     
         rescue SystemCallError => e
             raise e, 'ptt_login() system call:' + e.to_s()
@@ -181,7 +183,7 @@ module IllegalBoss
         begin
           tn.print('?')
           tn.waitfor(/\xB7\x6A\xB4\x4D\xBC\xD0\xC3\x44:\s*#{AnsiCursorHome}#{AnsiSetDisplayAttr}\s+#{AnsiSetDisplayAttr}#{AnsiEraseEOL}#{AnsiCursorHome}\Z/n){ |s| print(s) }
-          result = tn.cmd( 'String' => nil, 'Match' => /#{ArticleList}/){ |s| print(s) }
+          result = tn.cmd( 'String' => /[\xB6\xC2\xA6\x57]/, 'Match' => /#{ArticleList}/){ |s| print(s) }
           return result     
         rescue SystemCallError => e
             raise e, 'ptt_login() system call:' + e.to_s()
