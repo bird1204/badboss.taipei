@@ -23,7 +23,7 @@ class CompanyController < ApplicationController
   end
 
   def show
-    @company = Company.find(params[:id])
+    @company = Company.find_by_name(params[:id])
     # fail 'fewfew'
   end
 

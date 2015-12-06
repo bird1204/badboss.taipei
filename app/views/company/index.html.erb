@@ -8,14 +8,12 @@
 
     <div class="main_search">
       <div class="container">
-        <%= form_tag(company_path(1), method: "get") do %>
           <br>
           <input id="keyword" class="typeahead" type="text" placeholder="公司名稱、老闆名字...etc...">
           <div class="center">
-            <button class="waves-effect waves-light btn deep-orange">Go!</button>
+            <label class="waves-effect waves-light btn deep-orange" id = 'aaaa'>Go!</label>
           </div>
           <br>
-        <% end %>
       </div>
     </div>
 
@@ -75,7 +73,11 @@
       queryTokenizer: Bloodhound.tokenizers.whitespace,
       // url points to a json file that contains an array of country names, see
       // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
-      prefetch: 'https://localhost:3000/company.json'
+      prefetch: '/company.json'
+    });
+
+    $('#aaaa').on('click', function(){
+      window.location.href = "company/" + $("#keyword").val();
     });
 
     // passing in `null` for the `options` arguments will result in the default
