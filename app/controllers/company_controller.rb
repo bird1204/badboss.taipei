@@ -1,7 +1,6 @@
 class CompanyController < ApplicationController
 
   def index
-    @company = Company.all
   end
 
   def new
@@ -12,6 +11,17 @@ class CompanyController < ApplicationController
   end
 
   def create
+    @company = Company.create(company_params)
+
+    if @company.save
+      redirect_to company_path
+    else
+      render :new
+    end
+  end
+
+  def show
+    @company = Company.find(params[:id])
   end
 
   def update
@@ -19,4 +29,11 @@ class CompanyController < ApplicationController
 
   def destory
   end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:title, :description)
+  end
+
 end
