@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  good_or_bad: false
+  company_id: MyString
+  voting_ip: MyString
+
+two:
+  good_or_bad: false
+  company_id: MyString
+  voting_ip: MyString
