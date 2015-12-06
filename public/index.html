@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="white lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><img src="./image/logo_header.png"></a>
+      <ul class="right black-text hide-on-med-and-down">
+        <li><a class="grey-text">Say Bye-Bye to bad boss!</a></li>
+      </ul>
+
+      <!--ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul-->
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <div class="row center">
+        <h3 class="header col s12 light white-text">怕雷老闆？</h3>
+        <p class="white-text">違反勞基法、亂開需求、商業模式奇奇怪怪、脾氣奇怪...不要讓我遇到！</p>
+      </div>
+    </div>
+
+    <div class="main_search">
+      <div class="container">
+        <form>
+          <br>
+          <input id="keyword" class="typeahead" type="text" placeholder="公司名稱、老闆名字...etc...">
+          <div class="center"><button class="waves-effect waves-light btn deep-orange">Go!</button></div>
+          <br>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row center">
+        <p style="margin-top:5em;"></p>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   thanks Section   -->
+      <div class="row">
+
+        <div class="col s12">
+          <div class="center">
+            <h5 class="grey-text">Thanks</h5>
+            <br>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <img src="image/Gandi_logo_black.jpg" style="max-width:100%;">
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <img src="image/dot_taipei.png" style="max-width:100%;">
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <img src="image/heroku.jpg" style="max-width:100%;">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+  </div>
+
+  <footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">關於我們</h5>
+          <p class="grey-text text-lighten-4">我們是一群屁孩，專門解決自身跟社會的問題，當然我們不會讓你知道是誰，你只會莫名其妙地，看到一個又一個的網站，去揭開資訊的國防布。</p>
+
+
+        </div>
+        <div class="col l3 s12 push-l3">
+          <h5 class="white-text">提供資訊</h5>
+          <ul>
+            <li><a class="white-text" href="#!">檢舉慣老闆</a></li>
+            <li><a class="white-text" href="#!">我不是慣老闆！</a></li>
+          </ul>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="footer-copyright grey darken-4">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="mailto:g8071107@gmail.com">Unnamed Studio</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/typehead.js"></script>
+  <script type="text/javascript">
+
+
+
+    var countries = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      // url points to a json file that contains an array of country names, see
+      // https://github.com/twitter/typeahead.js/blob/gh-pages/data/countries.json
+      prefetch: 'http://twitter.github.io/typeahead.js/data/countries.json'
+    });
+
+    // passing in `null` for the `options` arguments will result in the default
+    // options being used
+    $('input.typeahead').typeahead(null, {
+      name: 'countries',
+      source: countries,
+      hint: true,
+      highlight: true,
+      minLength: 1
+    });
+    
+  </script>
+
+  </body>
+</html>
