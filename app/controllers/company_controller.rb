@@ -1,37 +1,35 @@
 class CompanyController < ApplicationController
   def index
+    respond_to do |format|
+      format.html
+      format.json { 
+        render json: Company.all.map(&:name)
+      }
+    end
   end
 
   def new
     @company = Company.new
   end
 
-  def edit
-  end
 
   def create
-    @company = Company.create(company_params)
-
-    if @company.save
-      redirect_to company_path
-    else
-      render :new
+    company = Company.new(company_params)
+    company.guilts.build(name: params[:company][:guilt][:name])
+    company.scorces.build(good_or_bad: false)
+    if company.save!
+      redirect_to company_index_path, notice: 'GOOD'
     end
   end
 
   def show
     @company = Company.find(params[:id])
-  end
-
-  def update
-  end
-
-  def destory
+    fail 'fewfew'
   end
 
   private
 
-  def group_params
-    params.require(:group).permit(:title, :description)
+  def company_params
+    params.require(:company).permit(:name, :owner, :website)
   end
 end

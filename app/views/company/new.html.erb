@@ -1,54 +1,52 @@
-  <div class="section no-pad-bot" id="form-banner">
-    
-    <div class="container">
-      <div class="row">
-        <h3 class="header s12 light white-text">檢舉慣老闆</h3>
-        <p class="white-text">告訴我們是哪個慣老闆，有多慣，讓我們替你伸張正義。</p>
-      </div>
-    </div>
-
-
-  </div>
-
-
+<div class="section no-pad-bot" id="form-banner">
+  
   <div class="container">
-
+    <div class="row">
+      <h3 class="header s12 light white-text">檢舉慣老闆</h3>
+      <p class="white-text">告訴我們是哪個慣老闆，有多慣，讓我們替你伸張正義。</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <%=form_for @company, url: company_index_path do |f|%>
+    <form class="col s12">
       <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s6">
-                <input id="company" type="text" class="validate">
-                <label for="company">公司名稱</label>
-              </div>
-              <div class="input-field col s6">
-                <input id="owner" type="text" class="validate">
-                <label for="owner">公司負責人</label>
-              </div>
-              <div class="input-field col s12">
-                <input id="address" type="text" class="validate">
-                <label for="address">公司地址</label>
-              </div>
-              <div class="input-field col s12">
-                <textarea id="accusation" class="materialize-textarea"></textarea>
-                <label for="accusation">罪狀</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="file-field input-field">
-                <div class="btn">
-                  <span>上傳證據</span>
-                  <input type="file">
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path validate" type="text">
-                </div>
-              </div>
-            </div>
-          <div class="center">
-            <button class="waves-effect waves-light btn">送出</button>
-            <button class="waves-effect waves-light btn grey">重設</button>
-          </div>
-          </form>
+        <div class="input-field col s6">
+          <%=f.text_field :name, class:"validate", required: true%>
+          <label for="company">公司名稱</label>
         </div>
-
+        <div class="input-field col s6">
+          <%=f.text_field :owner, class:"validate", required: true%>
+          <label for="owner">公司負責人</label>
+        </div>
+        <div class="input-field col s12">
+          <%=f.text_field :website, class:"validate", required: true%>
+          <label for="address">公司地址</label>
+        </div>
+        fwefw
+        <div class="input-field col s12">
+          <%=f.fields_for :guilt do |builder| %>
+          <%=builder.text_field :name, class:"validate", required: true%>
+          <label for="accusation">罪狀</label>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>上傳證據</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="center">
+        <%=f.submit '送出', class: "waves-effect waves-light btn grey"%>
+        <%=link_to nil, '重設', class: "waves-effect waves-light btn grey"%>
+      </div>
+      <%end%>
+    </div>
   </div>
