@@ -16,3 +16,9 @@
 !/log/.keep
 /tmp
 config/database.yml
+
+config/locales/simple_form.en.yml
+
+db/schema.rb
+
+config/database.yml
