@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="white lighten-1 z-depth-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo"><img src="./image/logo_header.png"></a>
+      <ul class="right black-text hide-on-med-and-down">
+        <li><a class="grey-text">查詢結果</a></li>
+      </ul>
+
+      <!--ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul-->
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot company_header_info" id="show-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col m12 l4">
+          <div class="company_map circle center"></div>
+        </div>
+        <div class="col m12 l8">
+            <h3 class="header light blue-grey-text">公司名稱</h3>
+            <p class="grey-text company_address">台北市中山區林森北路85巷16號</p>
+            <p class="grey-text company_info">公司介紹</p>
+            <div class="chip">22k</div> <div class="chip">勞基法</div> 
+            <p></p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="container">
+
+      <div class="row">
+
+        <div class="col s12 m8">
+         <ul class="collection">
+          <li class="collection-item avatar">
+            <i class="material-icons circle green">thumb_up</i>
+            <span class="title">這公司好啊</span>
+            <p>祝我清明節快樂<br>
+               (證據)<br>
+               <img src="http://materializecss.com/images/yuna.jpg">
+            </p>
+            <a href="#!" class="secondary-content">來源：ptt</a>
+          </li>
+          <li class="collection-item avatar">
+            <i class="material-icons circle red">thumb_down</i>
+            <span class="title">王八啊</span>
+            <p>光棍節還祝我快樂，幹！<br>
+               (證據)<br>
+               <img src="http://materializecss.com/images/yuna.jpg">
+            </p>
+            <a href="#!" class="secondary-content">來源：個人提供(bird1204)</a>
+          </li>
+        </ul>
+        </div>
+
+        <div class="col s12 m4 company-right">
+          <div class="card">
+            <div class="card-content">
+              <button class="btn circle green lighten-2"><i class="material-icons">thumb_up</i> 讚</button><button class="btn circle red lighten-2"><i class="material-icons">thumb_down</i> 幹</button>
+              <br>
+              <p class="grey-text">分數</p>
+              <div class="card-title">5.5</div>
+              <p></p>
+              <p class="grey-text">董事長：小屁孩</p>
+              <p class="grey-text">統編：12345678</p>
+              <p class="grey-text">公司註冊日期：3000/13/32</p>
+            </div>
+            <div class="card-action">
+              <a href="http://google.com">公司網站</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+  </div>
+
+  <footer class="page-footer grey darken-3">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">關於我們</h5>
+          <p class="grey-text text-lighten-4">我們是一群屁孩，專門解決自身跟社會的問題，當然我們不會讓你知道是誰，你只會莫名其妙地，看到一個又一個的網站，去揭開資訊的國防布。</p>
+
+
+        </div>
+        <div class="col l3 s12 push-l3">
+          <h5 class="white-text">提供資訊</h5>
+          <ul>
+            <li><a class="white-text" href="#!">檢舉慣老闆</a></li>
+            <li><a class="white-text" href="#!">資訊錯誤？</a></li>
+          </ul>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div class="footer-copyright grey darken-4">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="mailto:g8071107@gmail.com">Unnamed Studio</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  <script type="text/javascript">
+    $( document ).ready(function() {
+        var company_address = $('p.company_address').html();
+        $(".company_map").css("background-image","url('http://maps.googleapis.com/maps/api/staticmap?center="+company_address+";zoom=5&size=300x300&sensor=false;scale=4&amp;visual_refresh=true')");
+    });
+  </script>
+
+  </body>
+</html>
